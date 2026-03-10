@@ -1,0 +1,89 @@
+{
+  "quotes": [
+    {
+      "id": "1772774247695",
+      "clientName": "Juan P�rez",
+      "phone": "3005444049",
+      "city": "Cali",
+      "categories": [
+        "armarios",
+        "cocinas"
+      ],
+      "notes": [
+        "Cliente interesado en muebles personalizados"
+      ],
+      "whatsappMessages": [],
+      "status": "active",
+      "createdAt": "2026-03-06T05:17:27.695Z"
+    }
+  ],
+  "reviews": [],
+  "leads": [
+    {
+      "id": "1772774217415",
+      "nombre": "Test User",
+      "telefono": "3005444049",
+      "email": "test@example.com",
+      "ciudad": "Cali",
+      "mensaje": "Testing the system",
+      "fecha": "2026-03-06T05:16:57.416Z"
+    }
+  ],
+  "whatsappMessages": [],
+  "solicitudes": [
+    {
+      "id": "sol_1772775231852",
+      "nombre": "Cliente Demo",
+      "telefono": "3001234567",
+      "email": "demo@example.com",
+      "ciudad": "Cali",
+      "descripcion": "Quiero un armario moderno para mi dormitorio, blanco con vidrio",
+      "status": "activa",
+      "fecha": "2026-03-06T05:33:51.852Z",
+      "notas": [],
+      "cotizaciones": []
+    },
+    {
+      "id": "sol_1772776226147",
+      "nombre": "Cliente Demo Web",
+      "telefono": "3001234567",
+      "email": "demo@example.com",
+      "ciudad": "Medellin",
+      "descripcion": "Necesito una cocina integral de 3 metros con melamina blanca. Es para renovaci�n de apartamento en el Poblado.",
+      "status": "activa",
+      "fecha": "2026-03-06T05:50:26.147Z",
+      "origen": "web",
+      "notas": [],
+      "resumen_ia": "<strong>Cliente Demo Web</strong> está interesado en un proyecto de cocina integral. <br><br><strong>Próximo paso:</strong> Agendar visita técnica GRATUITA para medir y conocer necesidades.",
+      "cotizaciones": []
+    },
+    {
+      "id": "sol_1772776257617",
+      "nombre": "Cliente WhatsApp",
+      "telefono": "3005444049",
+      "email": "wa@example.com",
+      "ciudad": "Medellin",
+      "descripcion": "Hola, vi el closet color oscuro en Instagram y me encant�. Quiero uno igual para mi habitaci�n. �Cu�nto cuesta?",
+      "status": "activa",
+      "fecha": "2026-03-06T05:50:57.617Z",
+      "origen": "whatsapp",
+      "notas": [],
+      "resumen_ia": "<strong>Cliente WhatsApp</strong> está interesado en un sistema de closet o vestiario a medida. <br><br><strong>Próximo paso:</strong> Agendar visita técnica GRATUITA para medir y conocer necesidades.",
+      "cotizaciones": []
+    },
+    {
+      "id": "sol_1772776259842",
+      "nombre": "Cliente WhatsApp",
+      "telefono": "3005444049",
+      "email": "wa@example.com",
+      "ciudad": "Medellin",
+      "descripcion": "Hola, vi el closet color oscuro en Instagram y me encant�. Quiero uno igual para mi habitaci�n",
+      "status": "activa",
+      "fecha": "2026-03-06T05:50:59.842Z",
+      "origen": "whatsapp",
+      "notas": [],
+      "resumen_ia": "<strong>Cliente WhatsApp</strong> está interesado en un sistema de closet o vestiario a medida. <br><br><strong>Próximo paso:</strong> Agendar visita técnica GRATUITA para medir y conocer necesidades.",
+      "cotizaciones": []
+    }
+  ]
+}

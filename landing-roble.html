@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residencia Roble | Made Util</title>
+    <meta name="description"
+        content="Residencia Roble: cocina monolítica de roble europeo que estructura el área social. Diseñada para habitar. El Poblado, Medellín.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border-top: 1px solid var(--border);
+        }
+
+        .feature-item {
+            background: var(--bg);
+            padding: 4rem 2rem;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .feature-item:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-3px);
+        }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            background: rgba(16, 16, 16, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.6s var(--ease);
+            z-index: 90;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .sticky-bar.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="cocinas.html">Volver a Cocinas</a>
+            <a href="#" onclick="openPopup(); return false;" class="nav-cta">Cotizar</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- VIDEO HERO -->
+    <header class="video-hero">
+        <video autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=2000&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-kitchen-interior-design-4858-large.mp4"
+                type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <span class="impact-badge reveal">PROYECTO DESTACADO</span>
+            <h1 class="impact-title reveal">Residencia<br>Roble</h1>
+            <p class="reveal"
+                style="font-family: var(--font-serif); font-style: italic; color: var(--accent); margin-top: 1rem;">El
+                Poblado, Medellín</p>
+        </div>
+    </header>
+
+    <!-- INTRO -->
+    <section class="section py-xl reveal">
+        <div class="content-narrow">
+            <h2 class="full-text">La cocina como<br><span class="text-dim">escenario social.</span></h2>
+            <p class="mt-md text-muted" style="font-size: 1.1rem; line-height: 1.7;">Un volumen monolítico de roble
+                europeo que estructura todo el área social. Diseñada no solo para cocinar, sino para habitar. La isla
+                central de 4 metros se convierte en el corazón gravitacional de la casa.</p>
+        </div>
+    </section>
+
+    <!-- FEATURES GRID (Apple style) -->
+    <div class="feature-grid reveal-stagger">
+        <div class="feature-item">
+            <span class="brand-tag text-brand">MATERIALIDAD</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">Roble Macizo
+            </h3>
+            <p class="mt-md text-muted text-sm">Veta continua seleccionada a mano.</p>
+        </div>
+        <div class="feature-item">
+            <span class="brand-tag text-brand">TECNOLOGÍA</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">Blum Legrabox
+            </h3>
+            <p class="mt-md text-muted text-sm">Deslizamiento zero-gravity.</p>
+        </div>
+        <div class="feature-item">
+            <span class="brand-tag text-brand">SUPERFICIE</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">Neolith Stone
+            </h3>
+            <p class="mt-md text-muted text-sm">Resistencia térmica absoluta.</p>
+        </div>
+    </div>
+
+    <!-- IMAGEN FULL -->
+    <div class="reveal" style="height: 80vh; margin-top: 2px; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=2400&q=90"
+            alt="Cocina Residencia Roble" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <!-- BEFORE / AFTER -->
+    <section class="cs-before-after reveal">
+        <div class="content-narrow mb-lg">
+            <span class="brand-tag text-brand">TRANSFORMACIÓN</span>
+            <h2 class="mt-md" style="font-family: var(--font-h); font-size: 2rem;">El proceso</h2>
+        </div>
+        <div class="detail-ba-grid">
+            <div class="ba-card">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800"
+                    alt="Antes">
+                <p>ESTADO ORIGINAL: Espacio fragmentado y oscuro.</p>
+            </div>
+            <div class="ba-card">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800"
+                    alt="Después">
+                <p style="color: var(--accent);">RESULTADO FINAL: Integración total y luz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ficha Técnica -->
+    <section class="section py-lg reveal">
+        <div class="content-narrow">
+            <table class="data-table">
+                <tr>
+                    <td>UBICACIÓN</td>
+                    <td>El Poblado, Medellín</td>
+                </tr>
+                <tr>
+                    <td>ÁREA</td>
+                    <td>24 Metros Cuadrados</td>
+                </tr>
+                <tr>
+                    <td>TIEMPO FABRICACIÓN</td>
+                    <td>8 Semanas</td>
+                </tr>
+                <tr>
+                    <td>ACABADO</td>
+                    <td>Poliuretano Mate Italiano</td>
+                </tr>
+                <tr>
+                    <td>MESÓN</td>
+                    <td>Neolith Calacatta Gold</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Sticky Floating CTA -->
+    <div class="sticky-bar" id="stickyCta">
+        <span style="font-family: var(--font-h); font-size: 0.8rem; font-weight: 600;">Residencia Roble</span>
+        <button onclick="openPopup()" class="impact-btn" style="padding: 0.6rem 1.5rem; font-size: 0.65rem;">Cotizar
+            Similar</button>
+    </div>
+
+    <footer class="main-footer">
+        <h2 class="footer-title">Tu espacio<br><span class="text-brand">merece esto.</span></h2>
+        <div class="footer-actions">
+            <a href="solicitar-proyecto.html" class="impact-btn">Solicitar Cotización</a>
+        </div>
+        <p class="footer-bottom">Medellín, Colombia &mdash; &copy; 2025 Made Util</p>
+    </footer>
+
+    <!-- POPUP -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h3>Cocina Residencia Roble</h3>
+            <p>¿Te interesa un diseño similar? Déjanos tus datos.</p>
+            <input type="text" placeholder="Tu nombre">
+            <input type="email" placeholder="Email o WhatsApp">
+            <textarea placeholder="Cuéntanos sobre tu espacio..."></textarea>
+            <button class="popup-submit" onclick="closePopup()">Enviar Solicitud</button>
+        </div>
+    </div>
+
+    <div class="grain"></div>
+    <script src="js/main.js"></script>
+    <script src="js/floating-buttons.js"></script>
+</body>
+
+</html>

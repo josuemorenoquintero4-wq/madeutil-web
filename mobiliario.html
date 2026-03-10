@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobiliario a Medida Medellín | Made Util</title>
+    <meta name="description"
+        content="Muebles y mobiliario arquitectónico a medida en Medellín para oficinas, espacios públicos y residenciales. Diseño, fabricación e instalación con materiales premium.">
+    <meta name="keywords"
+        content="mobiliario a medida, muebles personalizados Medellín, mobiliario arquitectónico, estantes, librerías, divisiones, muebles de oficina">
+    <meta property="og:title" content="Mobiliario a Medida Medellín | Made Util">
+    <meta property="og:description"
+        content="Mobiliario arquitectónico personalizado. Diseño profesional, fabricación de calidad e instalación de precisión.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://madeutil.com/mobiliario.html">
+    <meta property="og:image" content="/images/mobiliario-og.jpg">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://madeutil.com/mobiliario.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="index.html#proyectos">Colecciones</a>
+            <a href="nosotros.html">Estudio</a>
+            <a href="solicitar-proyecto.html" class="nav-cta">COTIZAR</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <header class="page-header py-lg reveal">
+        <span class="brand-tag">COLECCIÓN 03 — MADE UTIL</span>
+        <h1 class="text-huge">MOBILIARIO DE AUTOR</h1>
+        <p class="big-p mt-lg" style="margin-left:auto;margin-right:auto;">
+            Piezas statement que definen el carácter de un espacio. Esculturas funcionales de precisión industrial,
+            fabricadas con superficies de alta resistencia y diseño computacional.
+        </p>
+    </header>
+
+    <section class="section py-lg">
+        <div id="dynamicProjects" class="work-grid">
+            <!-- Renders dynamically from JS -->
+        </div>
+    </section>
+
+    <footer class="main-footer reveal" id="contacto">
+        <h2 class="footer-title">Muebles únicos para<br><span class="text-brand">tu espacio.</span></h2>
+        <div class="footer-actions">
+            <a href="solicitar-proyecto.html" class="impact-btn"><span>COTIZAR MI MUEBLE</span></a>
+            <a href="tel:+573012400323" class="impact-btn-outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                301 240 0323
+            </a>
+        </div>
+        <div class="footer-nav">
+            <a href="index.html" class="footer-link">Inicio</a>
+            <a href="cocinas.html" class="footer-link">Cocinas</a>
+            <a href="armarios.html" class="footer-link">Armarios</a>
+            <a href="mobiliario.html" class="footer-link">Mobiliario</a>
+            <a href="nosotros.html" class="footer-link">Estudio</a>
+        </div>
+        <p class="footer-bottom">MEDELLÍN, COLOMBIA — © 2025 MADE UTIL — TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h3>Hablemos de tu proyecto</h3>
+            <p>Cuéntanos qué tienes en mente y te contactamos en menos de 24 horas.</p>
+            <input type="text" placeholder="TU NOMBRE">
+            <input type="email" placeholder="EMAIL O WHATSAPP">
+            <textarea placeholder="DESCRIBE TU PROYECTO..."></textarea>
+            <button class="popup-submit" onclick="closePopup()">ENVIAR SOLICITUD</button>
+        </div>
+    </div>
+
+    <div class="grain"></div>
+    <script src="js/main.js"></script>
+    <script src="js/portfolio-loader.js"></script>
+    <script src="js/floating-buttons.js"></script>
+</body>
+
+</html>

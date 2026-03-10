@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesa Monolito | Made Util</title>
+    <meta name="description"
+        content="Mesa Monolito: escultura funcional de nogal sólido. Diseñada para ser el centro de una conversación. Edición limitada.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border-top: 1px solid var(--border);
+        }
+
+        .feature-item {
+            background: var(--bg);
+            padding: 4rem 2rem;
+            text-align: center;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .feature-item:hover {
+            background: var(--bg-elevated);
+            transform: translateY(-3px);
+        }
+
+        .sticky-bar {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            background: rgba(16, 16, 16, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: transform 0.6s var(--ease);
+            z-index: 90;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .sticky-bar.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="mobiliario.html">Volver a Mobiliario</a>
+            <a href="#" onclick="openPopup(); return false;" class="nav-cta">Cotizar</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <header class="video-hero">
+        <video autoplay muted loop playsinline
+            poster="https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=2000&q=80">
+            <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-top-shot-of-a-woman-working-at-a-desk-with-her-laptop-4848-large.mp4"
+                type="video/mp4">
+        </video>
+        <div class="video-overlay">
+            <span class="impact-badge reveal">EDICIÓN LIMITADA</span>
+            <h1 class="impact-title reveal">Mesa<br>Monolito</h1>
+            <p class="reveal"
+                style="font-family: var(--font-serif); font-style: italic; color: var(--accent); margin-top: 1rem;">
+                Nogal Sólido, 8 Puestos</p>
+        </div>
+    </header>
+
+    <section class="section py-xl reveal">
+        <div class="content-narrow">
+            <h2 class="full-text">Escultura<br><span class="text-dim">funcional.</span></h2>
+            <p class="mt-md text-muted" style="font-size: 1.1rem; line-height: 1.7;">Diseñada para ser el centro de una
+                conversación. Sus patas de bloque sólido desafían la gravedad con ángulos precisos, mientras el tablón
+                de nogal de 5cm flota sobre ellas.</p>
+        </div>
+    </section>
+
+    <div class="feature-grid reveal-stagger">
+        <div class="feature-item">
+            <span class="brand-tag text-brand">ENSAMBLE</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">Caja y Espiga
+            </h3>
+            <p class="mt-md text-muted text-sm">Sin tornillos visibles.</p>
+        </div>
+        <div class="feature-item">
+            <span class="brand-tag text-brand">ACABADO</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">Cera Rubio
+            </h3>
+            <p class="mt-md text-muted text-sm">Monocoat natural 0% VOC.</p>
+        </div>
+        <div class="feature-item">
+            <span class="brand-tag text-brand">DIMENSIONES</span>
+            <h3 class="mt-md" style="font-family: var(--font-h); font-size: 1.5rem; color: var(--white);">2.80m x 1.20m
+            </h3>
+            <p class="mt-md text-muted text-sm">Capacidad para 10 personas.</p>
+        </div>
+    </div>
+
+    <div class="reveal" style="height: 80vh; margin-top: 2px; overflow: hidden;">
+        <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=2400&q=90"
+            alt="Mesa Monolito" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <section class="cs-before-after reveal">
+        <div class="content-narrow mb-lg">
+            <span class="brand-tag text-brand">DETALLE</span>
+            <h2 class="mt-md" style="font-family: var(--font-h); font-size: 2rem;">La madera respira</h2>
+        </div>
+        <div class="detail-ba-grid">
+            <div class="ba-card">
+                <img src="https://images.unsplash.com/photo-1611486212557-88be5ff6f941?auto=format&fit=crop&w=800"
+                    alt="Materia Prima">
+                <p>NOGAL EN BRUTO: Selección de tablones.</p>
+            </div>
+            <div class="ba-card">
+                <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800"
+                    alt="Producto Final">
+                <p style="color: var(--accent);">ACABADO FINAL: Tacto seda y protección.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section py-lg reveal">
+        <div class="content-narrow">
+            <table class="data-table">
+                <tr>
+                    <td>ESPECIE</td>
+                    <td>Nogal Cafetero</td>
+                </tr>
+                <tr>
+                    <td>PESO</td>
+                    <td>120kg (Aprox)</td>
+                </tr>
+                <tr>
+                    <td>TIEMPO FABRICACIÓN</td>
+                    <td>5 Semanas</td>
+                </tr>
+                <tr>
+                    <td>GARANTÍA</td>
+                    <td>De por vida estructural</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <div class="sticky-bar" id="stickyCta">
+        <span style="font-family: var(--font-h); font-size: 0.8rem; font-weight: 600;">Mesa Monolito</span>
+        <button onclick="openPopup()" class="impact-btn" style="padding: 0.6rem 1.5rem; font-size: 0.65rem;">Quiero esta
+            mesa</button>
+    </div>
+
+    <footer class="main-footer">
+        <h2 class="footer-title">Tu comedor<br><span class="text-brand">es el centro.</span></h2>
+        <div class="footer-actions">
+            <a href="solicitar-proyecto.html" class="impact-btn">Solicitar Cotización</a>
+        </div>
+        <p class="footer-bottom">Medellín, Colombia &mdash; &copy; 2025 Made Util</p>
+    </footer>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <h3>Mesa Monolito</h3>
+            <p>Piezas únicas sobre pedido.</p>
+            <input type="text" placeholder="Tu nombre">
+            <input type="email" placeholder="Email o WhatsApp">
+            <textarea placeholder="¿Medidas especiales?"></textarea>
+            <button class="popup-submit" onclick="closePopup()">Enviar</button>
+        </div>
+    </div>
+
+    <div class="grain"></div>
+    <script src="js/main.js"></script>
+    <script src="js/floating-buttons.js"></script>
+</body>
+
+</html>

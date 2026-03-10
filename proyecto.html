@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto | Made Util</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Manrope:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-page {
+            padding-top: 70px;
+        }
+
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #1c1916;
+        }
+
+        .project-carousel img,
+        .project-carousel video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .project-carousel img.active,
+        .project-carousel video.active {
+            opacity: 1;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: #c0763e;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .carousel-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Space Grotesk';
+            z-index: 5;
+        }
+
+        .project-info {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 5vw;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .project-name {
+            font-family: 'Space Grotesk';
+            font-size: 1.8rem;
+            color: #F5F2ED;
+            font-weight: 700;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #c0763e;
+            background: rgba(192, 118, 62, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .project-description {
+            color: #E8DACE;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(232, 218, 206, 0.1);
+        }
+
+        .tech-title {
+            font-family: 'Space Grotesk';
+            color: #F5F2ED;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: #1c1916;
+            border: 1px solid rgba(232, 218, 206, 0.1);
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .tech-item:hover {
+            border-color: #c0763e;
+        }
+
+        .tech-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(192, 118, 62, 0.1);
+            border-radius: 8px;
+        }
+
+        .tech-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #9A9490;
+            margin-bottom: 0.2rem;
+        }
+
+        .tech-value {
+            color: #F5F2ED;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .project-cta {
+            text-align: center;
+            padding: 3rem 5vw;
+            border-top: 1px solid rgba(232, 218, 206, 0.1);
+        }
+
+        .project-cta h3 {
+            font-family: 'Space Grotesk';
+            color: #F5F2ED;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-cta p {
+            color: #9A9490;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-cta a {
+            display: inline-block;
+            background: #c0763e;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Space Grotesk';
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .project-cta a:hover {
+            background: #d4945a;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width:600px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grain"></div>
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="index.html#proyectos">Colecciones</a>
+            <a href="nosotros.html">Estudio</a>
+            <a href="solicitar-proyecto.html" class="nav-cta">COTIZAR</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="project-page" id="projectDetailRoot">
+        <p style="text-align:center;padding:8rem 2rem;color:#9A9490;">Cargando proyecto...</p>
+    </div>
+    <footer class="main-footer" id="contacto">
+        <h2 class="footer-title">Tú lo piensas<br><span class="text-brand">nosotros lo creamos.</span></h2>
+        <div class="footer-nav">
+            <a href="index.html" class="footer-link">Inicio</a>
+            <a href="cocinas.html" class="footer-link">Cocinas</a>
+            <a href="armarios.html" class="footer-link">Armarios</a>
+            <a href="mobiliario.html" class="footer-link">Mobiliario</a>
+        </div>
+        <p class="footer-bottom">MEDELLÍN, COLOMBIA — © 2025 MADE UTIL</p>
+    </footer>
+    <script src="js/main.js"></script>
+    <script src="js/whatsapp.js"></script>
+    <script src="js/portfolio-loader.js"></script>
+    <script src="js/floating-buttons.js"></script>
+</body>
+
+</html>

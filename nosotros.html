@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Made Util | Especialistas en Carpintería a Medida Medellín</title>
+    <meta name="description"
+        content="Made Util - Carpintería arquitectónica con experiencia en Medellín. Especialistas en cocinas, closets y mobiliario a medida con materiales de alta gama.">
+    <meta name="keywords"
+        content="carpintería Medellín, ebanistería, diseño de interiores, muebles a medida, carpintería arquitectónica, estudio de diseño">
+    <meta property="og:title" content="Sobre Made Util | Carpintería a Medida Medellín">
+    <meta property="og:description"
+        content="Conoce nuestra historia, equipo y proceso de fabricación. Especialistas en soluciones personalizadas de carpintería.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://madeutil.com/nosotros.html">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://madeutil.com/nosotros.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── STUDIO PAGE OVERRIDES ── */
+        .studio-hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 5vw 6rem;
+            position: relative;
+        }
+
+        .studio-hero .brand-tag {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .studio-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 9vw, 8rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            max-width: 900px;
+        }
+
+        .studio-hero h1 .dim {
+            color: rgba(255, 255, 255, 0.18);
+        }
+
+        .studio-hero p.hero-sub {
+            margin-top: 2.5rem;
+            font-size: 1.05rem;
+            color: rgba(245, 242, 237, 0.5);
+            max-width: 520px;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .studio-hero-line {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, rgba(192, 118, 62, 0.6));
+            margin: 2.5rem auto 0;
+        }
+
+        /* FULL WIDTH PARALLAX IMAGE */
+        .studio-parallax-img {
+            width: 90%;
+            max-width: 1600px;
+            margin: 0 auto;
+            height: 70vh;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+            display: block;
+        }
+
+        /* MANIFESTO */
+        .studio-manifesto {
+            text-align: center;
+            padding: 8rem 5vw;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .studio-manifesto blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.7;
+            color: rgba(245, 242, 237, 0.85);
+        }
+
+        .studio-manifesto cite {
+            display: block;
+            margin-top: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-style: normal;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(192, 118, 62, 0.8);
+        }
+
+        /* PILLARS */
+        .pillars-section {
+            padding: 5rem 5vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pillars-section .section-label {
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(192, 118, 62, 0.8);
+            margin-bottom: 4rem;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5px;
+            background: rgba(232, 218, 206, 0.06);
+        }
+
+        .pillar-item {
+            background: #0f0e0c;
+            padding: 3.5rem 2.5rem;
+            transition: background 0.4s;
+        }
+
+        .pillar-item:hover {
+            background: #161412;
+        }
+
+        .pillar-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: rgba(192, 118, 62, 0.7);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .pillar-item h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-item p {
+            color: rgba(245, 242, 237, 0.4);
+            font-size: 0.88rem;
+            line-height: 1.8;
+        }
+
+        /* STATS */
+        .studio-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            border-top: 1px solid rgba(232, 218, 206, 0.06);
+            border-bottom: 1px solid rgba(232, 218, 206, 0.06);
+            margin: 4rem 0 0;
+        }
+
+        .studio-stat {
+            padding: 5rem 2rem;
+            border-right: 1px solid rgba(232, 218, 206, 0.06);
+        }
+
+        .studio-stat:last-child {
+            border-right: none;
+        }
+
+        .studio-stat .num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: rgba(192, 118, 62, 1);
+            line-height: 1;
+            margin-bottom: 0.75rem;
+        }
+
+        .studio-stat .lbl {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(245, 242, 237, 0.35);
+        }
+
+        /* CTA */
+        .studio-cta {
+            text-align: center;
+            padding: 9rem 5vw;
+        }
+
+        .studio-cta h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            line-height: 1.1;
+        }
+
+        .studio-cta h2 span {
+            color: rgba(192, 118, 62, 1);
+        }
+
+        .studio-cta .cta-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .studio-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .studio-stat {
+                border-right: 1px solid rgba(232, 218, 206, 0.06);
+            }
+
+            .studio-stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .studio-stat:nth-child(3) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .studio-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .studio-stat {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="index.html#proyectos">Colecciones</a>
+            <a href="nosotros.html">Estudio</a>
+            <a href="solicitar-proyecto.html" class="nav-cta">COTIZAR</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="studio-hero">
+        <span class="brand-tag">EST. 2020 — MEDELLÍN, COLOMBIA</span>
+        <h1>El rigor<br>de <span class="dim">la</span><br>ingeniería</h1>
+        <p class="hero-sub">En un mundo de improvisación, elegimos la precisión. No somos artesanos, somos ingenieros
+            del espacio.</p>
+        <div class="studio-hero-line"></div>
+    </section>
+
+    <!-- PARALLAX IMAGE -->
+    <div class="studio-parallax-img reveal"
+        style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=2400&q=80');">
+    </div>
+
+    <!-- MANIFESTO -->
+    <div class="studio-manifesto reveal">
+        <blockquote>
+            "Creemos que un objeto debe funcionar con la exactitud de una máquina
+            y la estética de una obra de arte. Diseñamos espacios que no gritan.
+            Espacios que sirven como telón de fondo para la vida."
+        </blockquote>
+        <cite>— Fundadores, Made Util Studio</cite>
+    </div>
+
+    <!-- PILLARS -->
+    <section class="pillars-section reveal">
+        <p class="section-label">Nuestra Filosofía</p>
+        <div class="pillars-grid">
+            <div class="pillar-item">
+                <span class="pillar-num">01</span>
+                <h3>Precisión Técnica</h3>
+                <p>Cada milímetro importa. Usamos corte computarizado CNC y materiales certificados para garantizar
+                    tolerancias exactas en cada pieza.</p>
+            </div>
+            <div class="pillar-item">
+                <span class="pillar-num">02</span>
+                <h3>Materiales Premium</h3>
+                <p>Melaminas Arauco de alta resistencia, herrajes Blum de Alemania, vidrio templado y perfilería de
+                    aluminio aeronáutico.</p>
+            </div>
+            <div class="pillar-item">
+                <span class="pillar-num">03</span>
+                <h3>Diseño Funcional</h3>
+                <p>Menos objetos, más función. Optimizamos cada centímetro del espacio para que cada mueble sirva un
+                    propósito real y elegante.</p>
+            </div>
+            <div class="pillar-item">
+                <span class="pillar-num">04</span>
+                <h3>Garantía Real</h3>
+                <p>4 años de garantía estructural. Los herrajes Blum tienen garantía del fabricante de por vida. Soporte
+                    post-venta permanente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="studio-stats reveal">
+        <div class="studio-stat">
+            <div class="num">+150</div>
+            <div class="lbl">Espacios Transformados</div>
+        </div>
+        <div class="studio-stat">
+            <div class="num">4a</div>
+            <div class="lbl">Garantía Estructural</div>
+        </div>
+        <div class="studio-stat">
+            <div class="num">100%</div>
+            <div class="lbl">Tableros Certificados</div>
+        </div>
+        <div class="studio-stat">
+            <div class="num">24h</div>
+            <div class="lbl">Respuesta Garantizada</div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <section class="studio-cta reveal">
+        <h2>¿Listo para transformar<br><span>tu espacio?</span></h2>
+        <div class="cta-row">
+            <a href="solicitar-proyecto.html" class="impact-btn"><span>SOLICITAR COTIZACIÓN</span></a>
+            <a href="mailto:madeutilantioquia@gmail.com" class="impact-btn-outline">EMAIL DIRECTO</a>
+        </div>
+    </section>
+
+    <footer class="main-footer reveal">
+        <h2 class="footer-title">Iniciemos.<br><span class="text-brand">Sin compromiso.</span></h2>
+        <div class="footer-actions">
+            <a href="solicitar-proyecto.html" class="impact-btn"><span>SOLICITAR COTIZACIÓN</span></a>
+            <a href="mailto:madeutilantioquia@gmail.com" class="impact-btn-outline">EMAIL</a>
+        </div>
+        <div class="footer-nav">
+            <a href="index.html" class="footer-link">Inicio</a>
+            <a href="nosotros.html" class="footer-link">Estudio</a>
+        </div>
+        <p class="footer-bottom">MEDELLÍN, COLOMBIA — © 2025 MADE UTIL</p>
+    </footer>
+
+    <!-- Floating Buttons automatically loaded -->
+
+    <div class="grain"></div>
+    <script src="js/main.js"></script>
+    <script src="js/floating-buttons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Made Util | Workspace</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f0e0c;
+            --card: #161412;
+            --border: rgba(232, 218, 206, 0.08);
+            --brown: #c0763e;
+            --white: #F5F2ED;
+            --muted: #9A9490;
+            --font-h: 'Space Grotesk', sans-serif;
+            --font-b: 'Manrope', sans-serif;
+            --red: #e74c3c;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: var(--font-b);
+        }
+
+        /* LOGIN */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg);
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+        }
+
+        .login-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .login-box h1 {
+            font-family: var(--font-h);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .login-input {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            outline: none;
+            text-align: center;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--white);
+            color: var(--bg);
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .login-btn:hover {
+            background: var(--brown);
+            color: white;
+        }
+
+        /* HEADER */
+        .admin-header {
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-logo {
+            font-family: var(--font-h);
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .admin-logo span {
+            color: var(--brown);
+        }
+
+        /* BUTTONS */
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #C0763E 0%, #92573B 100%);
+            color: white;
+            border: 1px solid rgba(192,118,62,0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-h);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+            box-shadow: 0 4px 15px rgba(192,118,62,0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #E8A86C 0%, #C0763E 100%);
+            box-shadow: 0 8px 25px rgba(192,118,62,0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #C0763E;
+            border: 1.5px solid rgba(192,118,62,0.5);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-h);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(192,118,62,0.1);
+            border-color: #C0763E;
+        }
+
+        .btn-sm-danger {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--red);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .btn-sm-danger:hover {
+            background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+            color: white;
+            border-color: #E74C3C;
+        }
+
+        .btn-sm {
+            background: transparent;
+            border: 1px solid rgba(192,118,62,0.4);
+            color: #C0763E;
+            padding: 0.45rem 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .btn-sm:hover {
+            border-color: #C0763E;
+            background: rgba(192,118,62,0.1);
+        }
+
+        .btn-sm.del:hover {
+            background: #E74C3C;
+            border-color: #E74C3C;
+            color: white;
+        }
+
+        /* MAIN */
+        .admin-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            display: none;
+        }
+
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-family: var(--font-h);
+            font-weight: 400;
+            font-size: 2rem;
+        }
+
+        /* COLLECTIONS */
+        .collection-block {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+        }
+
+        .collection-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collection-info h2 {
+            font-family: var(--font-h);
+            font-size: 1.3rem;
+            color: var(--brown);
+            margin-bottom: 0.2rem;
+        }
+
+        .collection-info p {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .collection-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(30,28,24,0.8) 0%, rgba(26,23,20,0.9) 100%);
+            border: 1.5px solid rgba(192,118,62,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .project-card:hover {
+            border-color: rgba(192,118,62,0.4);
+            box-shadow: 0 8px 20px rgba(192,118,62,0.15);
+            transform: translateY(-2px);
+        }
+
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-bottom: 1.5px solid rgba(192,118,62,0.15);
+            background: #0d0c0a;
+            display: block;
+        }
+
+        .project-meta {
+            padding: 1rem;
+        }
+
+        .project-name {
+            font-family: var(--font-h);
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            color: #E8DACE;
+        }
+
+        .project-badge {
+            font-size: 0.62rem;
+            color: #E8A86C;
+            background: rgba(192,118,62,0.15);
+            border: 1px solid rgba(192,118,62,0.4);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .add-project-card {
+            border: 1.5px dashed rgba(192,118,62,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            cursor: pointer;
+            transition: 0.2s;
+            min-height: 180px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-project-card:hover {
+            border-color: var(--brown);
+            color: var(--brown);
+        }
+
+        .add-project-card .plus {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        /* MODALS */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--card) 0%, rgba(30,28,24,0.95) 100%);
+            border: 1.5px solid rgba(192,118,62,0.25);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 620px;
+            padding: 2.5rem;
+            margin: auto;
+            box-shadow: 0 20px 60px rgba(192,118,62,0.15), inset 0 1px 1px rgba(232,218,206,0.05);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(192,118,62,0.15);
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-h);
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #E8DACE 0%, #C0763E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: all 0.2s;
+        }
+        
+        .close-btn:hover {
+            color: #E74C3C;
+            transform: scale(1.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.85rem;
+            border-radius: 6px;
+            font-family: var(--font-b);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--brown);
+        }
+
+        textarea.form-input {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .file-zone {
+            border: 1px dashed var(--border);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .file-zone input[type=file] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .spec-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 36px;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        /* TABS */
+        .admin-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid rgba(192,118,62,0.15);
+            margin-bottom: 2.5rem;
+        }
+
+        .admin-tab {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--muted);
+            padding: 1rem 1.75rem;
+            cursor: pointer;
+            font-family: var(--font-h);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+            margin-bottom: -2px;
+            position: relative;
+        }
+
+        .admin-tab:hover {
+            color: #C0763E;
+            border-bottom-color: rgba(192,118,62,0.3);
+        }
+
+        .admin-tab.active {
+            color: #E8DACE;
+            border-bottom-color: #C0763E;
+            background: rgba(192,118,62,0.08);
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        /* FAQ EDITOR */
+        .faq-edit-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .faq-edit-item .faq-texts {
+            flex: 1;
+        }
+
+        .faq-edit-item .faq-q {
+            font-family: var(--font-h);
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .faq-edit-item .faq-a {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* LEADS */
+        .lead-card {
+            background: linear-gradient(135deg, rgba(30,28,24,0.8) 0%, rgba(26,23,20,0.9) 100%);
+            border: 1.5px solid rgba(192,118,62,0.2);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .lead-card:hover {
+            border-color: rgba(192,118,62,0.4);
+            box-shadow: 0 8px 25px rgba(192,118,62,0.1);
+            transform: translateY(-2px);
+        }
+
+        .lead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .lead-name {
+            font-family: var(--font-h);
+            font-size: 1.1rem;
+            color: #E8DACE;
+        }
+
+        .lead-date {
+            font-size: 0.72rem;
+            color: rgba(232,218,206,0.6);
+            letter-spacing: 1px;
+        }
+
+        .lead-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lead-chip {
+            background: rgba(192, 118, 62, 0.15);
+            border: 1px solid rgba(192, 118, 62, 0.35);
+            color: #E8A86C;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .lead-desc {
+            font-size: 0.88rem;
+            color: rgba(232,218,206,0.7);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #25D366 0%, #1da452 100%);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .wa-btn:hover {
+            opacity: 0.88;
+        }
+
+        /* AI PRICING PANEL */
+        .ai-pricing-panel {
+            background: var(--card);
+            border: 1px solid rgba(192, 118, 62, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .ai-pricing-header {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(192, 118, 62, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .ai-pricing-header span {
+            color: var(--brown);
+            font-size: 1.2rem;
+        }
+
+        .ai-pricing-header h3 {
+            font-family: var(--font-h);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .ai-pricing-header p {
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        .ai-chat-area {
+            height: 240px;
+            overflow-y: auto;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .ai-msg {
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 90%;
+        }
+
+        .ai-msg.bot {
+            background: rgba(192, 118, 62, 0.08);
+            border: 1px solid rgba(192, 118, 62, 0.12);
+            align-self: flex-start;
+        }
+
+        .ai-msg.user {
+            background: rgba(245, 242, 237, 0.06);
+            align-self: flex-end;
+        }
+
+        .ai-chat-input {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            outline: none;
+            font-family: var(--font-b);
+        }
+
+        .ai-chat-input button {
+            background: linear-gradient(135deg, #C0763E 0%, #92573B 100%);
+            border: 1px solid rgba(192,118,62,0.3);
+            color: white;
+            padding: 0.7rem 1.3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+            box-shadow: 0 4px 12px rgba(192,118,62,0.2);
+        }
+
+        .ai-chat-input button:hover {
+            background: linear-gradient(135deg, #E8A86C 0%, #C0763E 100%);
+            box-shadow: 0 8px 20px rgba(192,118,62,0.35);
+            transform: translateY(-2px);
+        }
+
+        .ai-chat-input button:active {
+            transform: translateY(0);
+        }
+
+        .price-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.75rem;
+            padding: 1.2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .price-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+        }
+
+        .price-item .pi-name {
+            font-size: 0.72rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-item .pi-price {
+            font-family: var(--font-h);
+            font-size: 1rem;
+            color: var(--brown);
+        }
+
+        .price-item .pi-unit {
+            font-size: 0.68rem;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <h1>Workspace</h1>
+            <input type="password" class="login-input" id="adminPass" placeholder="Contrasena de acceso" autofocus>
+            <button class="login-btn" id="loginBtn">Ingresar</button>
+            <p id="loginError" style="color:var(--red);font-size:0.8rem;margin-top:1rem;display:none;">Contrasena
+                incorrecta</p>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="admin-header">
+        <div class="admin-logo">MADE UTIL <span>WORKSPACE</span></div>
+        <div style="display:flex;gap:1rem;align-items:center;">
+            <a href="index.html" class="btn-outline" style="text-decoration:none;">&#8592; Ver Sitio Web</a>
+            <button class="btn-outline" id="btnLogout">Salir</button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="admin-main" id="adminMain">
+        <!-- TABS -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" onclick="switchTab('portfolio',this)">Portafolio</button>
+            <button class="admin-tab" onclick="switchTab('faq',this)">Preguntas Frecuentes</button>
+            <button class="admin-tab" onclick="switchTab('resenas',this)">Reseñas <span id="resenaCount"
+                    style="background:rgba(192,118,62,0.25);color:var(--brown);border-radius:12px;padding:0.1rem 0.5rem;font-size:0.7rem;margin-left:0.3rem;"></span></button>
+            <button class="admin-tab" onclick="switchTab('cotizaciones',this)">Cotizaciones <span id="leadsCount"
+                    style="background:rgba(192,118,62,0.25);color:var(--brown);border-radius:12px;padding:0.1rem 0.5rem;font-size:0.7rem;margin-left:0.3rem;"></span></button>
+            <button class="admin-tab" onclick="switchTab('suscriptores',this)">Suscriptores <span id="subsCount"
+                    style="background:rgba(192,118,62,0.25);color:var(--brown);border-radius:12px;padding:0.1rem 0.5rem;font-size:0.7rem;margin-left:0.3rem;"></span></button>
+        </div>
+
+        <!-- SECTION: PORTAFOLIO -->
+        <div id="sectionPortfolio" class="admin-section active">
+            <div class="page-title">
+                <h1>Portafolio</h1>
+                <button class="btn-primary" id="btnNewColl">+ Nueva Coleccion</button>
+            </div>
+            <div id="collectionsList"></div>
+        </div>
+
+        <!-- SECTION: FAQ -->
+        <div id="sectionFaq" class="admin-section">
+            <div class="page-title">
+                <h1>Preguntas Frecuentes</h1>
+                <button class="btn-primary" onclick="openFaqModal()">+ Nueva Pregunta</button>
+            </div>
+            <div id="faqList"></div>
+        </div>
+
+        <!-- SECTION: RESENAS -->
+        <div id="sectionResenas" class="admin-section">
+            <div class="page-title">
+                <h1>Reseñas de Clientes</h1>
+                <div style="display:flex;gap:1rem;align-items:center;">
+                    <span style="color:var(--muted);font-size:0.82rem;">Gestiona reseñas con drag & drop</span>
+                    <div style="display:flex;gap:0.5rem;">
+                        <span style="background:rgba(52,152,219,0.15);color:#3498db;padding:0.2rem 0.6rem;border-radius:10px;font-size:0.7rem;font-weight:600;">Nuevos: <span id="resenaCount"></span></span>
+                        <span style="background:rgba(46,204,113,0.15);color:#2ecc71;padding:0.2rem 0.6rem;border-radius:10px;font-size:0.7rem;font-weight:600;">Visibles: <span id="visibleCount">0</span></span>
+                        <span style="background:rgba(231,76,60,0.15);color:#e74c3c;padding:0.2rem 0.6rem;border-radius:10px;font-size:0.7rem;font-weight:600;">Archivados: <span id="archivedCount">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARRUSEL DE RESEÑAS VISIBLES -->
+            <div style="margin-bottom:3rem;">
+                <h3 style="font-family:var(--font-h);color:#F5F2ED;margin-bottom:1rem;">Carrusel Visible (Arrastra para ocultar)</h3>
+                <div id="visibleCarousel" class="drop-zone" data-drop-state="hidden" style="background:var(--bg-card);border:2px dashed rgba(231,76,60,0.3);border-radius:16px;padding:1rem;min-height:200px;"></div>
+            </div>
+
+            <!-- RESEÑAS NUEVAS -->
+            <div style="margin-bottom:3rem;">
+                <h3 style="font-family:var(--font-h);color:#F5F2ED;margin-bottom:1rem;">Reseñas Nuevas (Arrastra para aprobar)</h3>
+                <div id="newReviewsList" class="drop-zone" data-drop-state="visible" style="background:var(--bg-card);border:2px dashed rgba(46,204,113,0.3);border-radius:16px;padding:1rem;min-height:150px;"></div>
+            </div>
+
+            <!-- RESEÑAS OCULTAS -->
+            <div style="margin-bottom:3rem;">
+                <h3 style="font-family:var(--font-h);color:#F5F2ED;margin-bottom:1rem;">Reseñas Ocultas (Arrastra para mostrar o archivar)</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+                    <div id="hiddenReviewsList" class="drop-zone" data-drop-state="visible" style="background:var(--bg-card);border:2px dashed rgba(46,204,113,0.3);border-radius:16px;padding:1rem;min-height:150px;">
+                        <div style="text-align:center;color:#9A9490;font-style:italic;padding:2rem;">Zona para mostrar reseñas</div>
+                    </div>
+                    <div id="archivedReviewsList" class="drop-zone" data-drop-state="archived" style="background:var(--bg-card);border:2px dashed rgba(231,76,60,0.3);border-radius:16px;padding:1rem;min-height:150px;">
+                        <div style="text-align:center;color:#9A9490;font-style:italic;padding:2rem;">Zona para archivar reseñas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSTRUCCIONES -->
+            <div style="background:rgba(192,118,62,0.1);border:1px solid rgba(192,118,62,0.2);border-radius:12px;padding:1.5rem;">
+                <h4 style="font-family:var(--font-h);color:#C0763E;margin-bottom:1rem;">💡 Cómo usar el sistema:</h4>
+                <ul style="color:#F5F2ED;font-size:0.9rem;line-height:1.6;">
+                    <li><strong>Arrastrar:</strong> Toma cualquier reseña y arrástrala a la zona deseada</li>
+                    <li><strong>Nuevas:</strong> Aparecen aquí cuando un cliente deja reseña. Arrástralas al carrusel para mostrarlas</li>
+                    <li><strong>Carrusel:</strong> Las reseñas visibles rotan automáticamente cada 5 segundos</li>
+                    <li><strong>Archivar:</strong> Mueve reseñas viejas aquí para mantener el carrusel fresco</li>
+                    <li><strong>Máximo:</strong> 30 reseñas visibles en el carrusel (se reinicia al llegar al final)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SECTION: COTIZACIONES -->
+        <div id="sectionCotizaciones" class="admin-section">
+            <div class="page-title" style="margin-bottom:1.5rem;">
+                <h1>Cotizaciones</h1>
+                <button class="btn-sm-danger" onclick="clearLeads()">Limpiar Todo</button>
+            </div>
+
+            <!-- AI PRICING ASSISTANT -->
+            <div class="ai-pricing-panel">
+                <div class="ai-pricing-header">
+                    <span>&#129302;</span>
+                    <div>
+                        <h3>Asistente de Precios — Made Util IA</h3>
+                        <p>Preguntas rapidas de precios, materiales, respuestas al cliente y estrategia de venta</p>
+                    </div>
+                </div>
+                <div class="ai-chat-area" id="pricingChat">
+                    <div class="ai-msg bot">Hola! Soy tu asistente de cotizaciones. Preguntame precios de Madrecentro,
+                        como responder a un cliente, o ayudame a calcular un proyecto. Por ejemplo: <b>"cuanto cuesta
+                            una cocina de 3 metros"</b> o <b>"cliente pide descuento, que le digo?"</b></div>
+                </div>
+                <div class="ai-chat-input">
+                    <input type="text" id="pricingInput" placeholder="Ej: cuanto vale el metro de melamina blanca?"
+                        onkeydown="if(event.key==='Enter')sendPricingMsg()">
+                    <button onclick="sendPricingMsg()">Enviar</button>
+                </div>
+                <!-- PRICE REFERENCE -->
+                <div
+                    style="padding:0.8rem 1.2rem;border-top:1px solid var(--border);font-size:0.68rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;">
+                    Referencia Madrecentro — Medellín (precios aprox. 2024)</div>
+                <div class="price-ref">
+                    <div class="price-item">
+                        <div class="pi-name">Melamina Blanca 18mm</div>
+                        <div class="pi-price">$72.000</div>
+                        <div class="pi-unit">por m²</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Melamina Gris Antracita 18mm</div>
+                        <div class="pi-price">$80.000</div>
+                        <div class="pi-unit">por m²</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Melamina Roble/Madera 18mm</div>
+                        <div class="pi-price">$88.000</div>
+                        <div class="pi-unit">por m²</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">MDF Lacado Blanco 15mm</div>
+                        <div class="pi-price">$110.000</div>
+                        <div class="pi-unit">por m²</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Bisagra Blum Clip Top</div>
+                        <div class="pi-price">$28.000</div>
+                        <div class="pi-unit">por unidad</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Corredera Blum Tandem 500mm</div>
+                        <div class="pi-price">$65.000</div>
+                        <div class="pi-unit">por par</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Cuarzo Blanco Silestone</div>
+                        <div class="pi-price">$320.000</div>
+                        <div class="pi-unit">por m²</div>
+                    </div>
+                    <div class="price-item">
+                        <div class="pi-name">Mano de Obra Instalacion</div>
+                        <div class="pi-price">$150.000</div>
+                        <div class="pi-unit">por m² instalado</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-family:var(--font-h);font-weight:400;font-size:1.3rem;margin-bottom:1.5rem;margin-top:3rem;">Solicitudes en Progreso</h2>
+            <div id="solicitudesList"></div>
+        </div>
+
+        <!-- SECTION: SUSCRIPTORES -->
+        <div id="sectionSuscriptores" class="admin-section">
+            <div class="page-title">
+                <h1>Suscriptores</h1>
+                <div style="display:flex;gap:0.5rem;">
+                    <button class="btn-primary" onclick="sendNewsletter()">📧 Enviar Newsletter</button>
+                    <button class="btn-secondary" onclick="exportSubscribers()">📊 Exportar Lista</button>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:2rem;">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalSubs">0</div>
+                    <div class="stat-label">Total Suscriptores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="thisMonthSubs">0</div>
+                    <div class="stat-label">Este Mes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeSubs">0</div>
+                    <div class="stat-label">Activos</div>
+                </div>
+            </div>
+
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
+                <h3 style="font-family:var(--font-h);font-size:1.1rem;margin-bottom:1rem;">📧 Enviar Notificación a Todos</h3>
+                <div style="display:grid;gap:1rem;">
+                    <input type="text" id="newsletterSubject" placeholder="Asunto del email" style="padding:0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.9rem;">
+                    <textarea id="newsletterMessage" placeholder="Mensaje..." rows="4" style="padding:0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--white);font-size:0.9rem;resize:vertical;"></textarea>
+                    <div style="display:flex;gap:0.5rem;">
+                        <button class="btn-primary" onclick="sendCustomNewsletter()">Enviar Email</button>
+                        <button class="btn-secondary" onclick="previewNewsletter()">Vista Previa</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="font-family:var(--font-h);font-weight:400;font-size:1.3rem;margin-bottom:1.5rem;">Lista de Suscriptores</h2>
+            <div id="subscribersList" style="display:grid;gap:1rem;"></div>
+        </div>
+    </main>
+
+    <!-- MODAL COLECCION -->
+    <div class="modal" id="modalCollection">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Nueva Coleccion</h2>
+                <button class="close-btn" data-close-modal>&#x2715;</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Nombre</label>
+                <input class="form-input" id="colName" placeholder="Ej. Terrazas">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Descripcion</label>
+                <textarea class="form-input" id="colDesc" placeholder="Una breve descripcion..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Imagen de Portada (opcional)</label>
+                <div class="file-zone">
+                    <input type="file" id="colCoverInput" accept="image/*">
+                    Haz clic aqui para subir una foto de portada
+                </div>
+                <div id="colCoverPreview" style="margin-top:0.75rem;"></div>
+            </div>
+            <button class="btn-primary" style="width:100%;" id="btnSaveColl">Crear Coleccion</button>
+        </div>
+    </div>
+
+    <!-- MODAL PROYECTO -->
+    <div class="modal" id="modalProject">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="projModalTitle">Anadir Proyecto</h2>
+                <button class="close-btn" data-close-modal>&#x2715;</button>
+            </div>
+            <input type="hidden" id="projId">
+            <input type="hidden" id="projCollId">
+            <div class="form-group">
+                <label class="form-label">Nombre del Proyecto</label>
+                <input class="form-input" id="projName" placeholder="Ej. Residencia Roble">
+            </div>
+            <div class="form-group two-col">
+                <div>
+                    <label class="form-label">Tipo</label>
+                    <select class="form-input" id="projType">
+                        <option value="normal">Trabajo Normal</option>
+                        <option value="destacado">Destacado (Cover grande)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label">Ubicacion / Ano</label>
+                    <input class="form-input" id="projLoc" placeholder="Ej. Medellin, 2024">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Imagenes y Videos</label>
+                <div class="file-zone">
+                    <input type="file" id="projMediaInput" multiple accept="image/*,video/*">
+                    Haz clic para subir fotos o videos (puedes subir varios)
+                </div>
+                <div id="projPreviews" style="margin-top:0.75rem;"></div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Descripcion</label>
+                <textarea class="form-input" id="projDesc" placeholder="Describe el proyecto..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Especificaciones Tecnicas</label>
+                <div id="projSpecs"></div>
+                <button class="btn-outline" id="btnAddSpec" style="width:100%;margin-top:0.5rem;">+ Agregar
+                    Fila</button>
+            </div>
+            <button class="btn-primary" style="width:100%;margin-top:1rem;" id="btnSaveProj">Guardar Proyecto</button>
+        </div>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+
+    <!-- MODAL FAQ -->
+    <div class="modal" id="modalFaq">
+        <div class="modal-content" style="max-width:560px;">
+            <div class="modal-header">
+                <h2>Pregunta Frecuente</h2>
+                <button class="close-btn" data-close-modal>&#x2715;</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Pregunta</label>
+                <input class="form-input" id="faqQ" placeholder="Ej. ¿Cuánto tiempo toma un proyecto?">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Respuesta</label>
+                <textarea class="form-input" id="faqA" placeholder="Escribe la respuesta completa..."
+                    style="min-height:120px;"></textarea>
+            </div>
+            <button class="btn-primary" style="width:100%;" id="btnSaveFaq">Guardar Pregunta</button>
+        </div>
+    </div>
+
+    <!-- MODAL SOLICITUD -->
+    <div class="modal" id="modalSolicitud">
+    <!-- MODAL FAQ -->
+    <div class="modal" id="modalFaq">
+        <div class="modal-content" style="max-width:560px;">
+            <div class="modal-header">
+                <h2>Pregunta Frecuente</h2>
+                <button class="close-btn" data-close-modal>&#x2715;</button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Pregunta</label>
+                <input class="form-input" id="faqQ" placeholder="Ej. ¿Cuánto tiempo toma un proyecto?">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Respuesta</label>
+                <textarea class="form-input" id="faqA" placeholder="Escribe la respuesta completa..."
+                    style="min-height:120px;"></textarea>
+            </div>
+            <button class="btn-primary" style="width:100%;" id="btnSaveFaq">Guardar Pregunta</button>
+        </div>
+    </div>
+
+    <!-- MODAL SOLICITUD -->
+    <div class="modal" id="modalSolicitud">
+        <div class="modal-content" style="max-width:720px;max-height:90vh;overflow-y:auto;">
+            <div class="modal-header">
+                <div style="flex:1;">
+                    <h2 id="modalSolNombre">Solicitud</h2>
+                    <div style="display:flex;gap:1rem;align-items:center;margin-top:0.5rem;font-size:0.85rem;">
+                        <span id="modalSolOrigen"></span>
+                        <span id="modalSolFecha" style="color:var(--muted);"></span>
+                    </div>
+                </div>
+                <button class="close-btn" data-close-modal>&#x2715;</button>
+            </div>
+
+            <div style="padding:1.5rem;display:grid;gap:1.5rem;">
+                <!-- INFORMACIÓN PRINCIPAL -->
+                <div>
+                    <h3 style="font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.75rem;">Información del Cliente</h3>
+                    <div id="modalSolInfo" style="display:grid;gap:0.5rem;font-size:0.9rem;"></div>
+                </div>
+
+                <!-- DESCRIPCIÓN -->
+                <div>
+                    <h3 style="font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.75rem;">📝 Descripción del Proyecto</h3>
+                    <div id="modalSolDesc" style="background:var(--bg);padding:1rem;border-radius:6px;border-left:3px solid var(--brown);font-size:0.9rem;"></div>
+                </div>
+
+                <!-- RESUMEN IA -->
+                <div>
+                    <h3 style="font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.75rem;">🤖 Análisis de IA</h3>
+                    <div id="modalSolResumen" style="background:rgba(192,118,62,0.05);padding:1rem;border-radius:6px;"></div>
+                </div>
+
+                <!-- SUGERENCIAS IA -->
+                <div>
+                    <h3 style="font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.75rem;">💡 Sugerencias para Responder</h3>
+                    <div id="modalSolAISuggestions" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+                </div>
+
+                <!-- NOTAS -->
+                <div>
+                    <h3 style="font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:0.75rem;">📌 Blog de Notas</h3>
+                    <div id="modalSolNotas" style="max-height:250px;overflow-y:auto;margin-bottom:1rem;"></div>
+                    <div style="display:flex;gap:0.5rem;">
+                        <input type="text" id="newNoteInput" placeholder="Agregar una nota..." 
+                               style="flex:1;padding:0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--white);font-size:0.9rem;outline:none;">
+                        <button id="btnAddNote" class="btn-primary" style="padding:0.75rem 1.5rem;">Guardar Nota</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/comments-carousel.js"></script>
+    <script src="js/admin-script.js"></script>
+    <script src="js/reviews-admin.js"></script>
+    <script src="js/quotes-advanced.js"></script>
+    <script src="js/ai-assistant-v5.js"></script>
+    <script src="js/solicitudes-admin.js"></script>
+    <link rel="stylesheet" href="css/ai-assistant.css">
+    
+    <script>
+        // Initialize admin panel on load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load reviews if on reviews tab
+            if (document.querySelector('[data-tab="reviews"]') || document.getElementById('sectionResenas')) {
+                renderReviewsAdmin();
+            }
+            // Load quotes if on quotes tab
+            if (document.querySelector('[data-tab="quotes"]') || document.getElementById('sectionCotizaciones')) {
+                renderActiveQuotesAdmin();
+                renderArchivedQuotesAdmin();
+            }
+        });
+        
+        // Initialize comment carousel on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initCommentCarousel();
+        });
+    </script>
+    <script src="js/sync-admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Matter | Made Util</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Manrope:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-page {
+            padding-top: 70px;
+        }
+
+        /* CAROUSEL */
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--bg-card);
+            border-radius: 0 0 16px 16px;
+        }
+
+        .project-carousel img,
+        .project-carousel video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .project-carousel img.active,
+        .project-carousel video.active {
+            opacity: 1;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 5;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--brand-brown);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .carousel-counter {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: var(--font-h);
+            z-index: 5;
+        }
+
+        /* INFO SECTION */
+        .project-info {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem 5vw;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .project-name {
+            font-family: var(--font-h);
+            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--brand-brown);
+            background: rgba(192, 118, 62, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .project-description {
+            color: var(--accent);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* TECH SPECS */
+        .tech-title {
+            font-family: var(--font-h);
+            color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .tech-item:hover {
+            border-color: var(--brand-brown);
+        }
+
+        .tech-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(192, 118, 62, 0.1);
+            border-radius: 8px;
+        }
+
+        .tech-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .tech-value {
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* CTA */
+        .project-cta {
+            text-align: center;
+            padding: 3rem 5vw;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-cta h3 {
+            font-family: var(--font-h);
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-cta p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-cta a {
+            display: inline-block;
+            background: var(--brand-brown);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-h);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .project-cta a:hover {
+            background: var(--brand-brown-light);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-header {
+                flex-direction: column;
+            }
+
+            .project-carousel {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+    <div class="grain"></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="index.html#proyectos">Colecciones</a>
+            <a href="nosotros.html">Estudio</a>
+            <a href="solicitar-proyecto.html" class="nav-cta">COTIZAR</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="project-page">
+        <!-- CAROUSEL -->
+        <div class="project-carousel" id="projCarousel">
+            <img src="https://images.unsplash.com/photo-1556912173-3db996e1628d?auto=format&fit=crop&w=1200"
+                alt="Dark Matter - Vista general" class="active">
+            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200"
+                alt="Dark Matter - Detalle cajones">
+            <img src="https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&w=1200"
+                alt="Dark Matter - Mesón">
+            <img src="https://images.unsplash.com/photo-1595515106967-1b3eb3d6928e?auto=format&fit=crop&w=1200"
+                alt="Dark Matter - Herrajes">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200"
+                alt="Dark Matter - Iluminación">
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="projSlide(-1)">‹</button>
+                <button class="carousel-btn" onclick="projSlide(1)">›</button>
+            </div>
+            <div class="carousel-dots" id="projDots"></div>
+            <div class="carousel-counter" id="projCounter">1 / 5</div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="project-info">
+            <div class="project-header">
+                <h1 class="project-name">Dark Matter</h1>
+                <span class="project-tag">Cocina Integral</span>
+            </div>
+            <p class="project-description">
+                Un bloque monolítico de roble ahumado diseñado para anclar el espacio social.
+                Dark Matter es un ejercicio de minimalismo radical donde la veta de la madera es la única decoración
+                permitida.
+                La cocina se integra completamente con la zona social del apartamento, creando un espacio atemporal
+                que funciona como corazón del hogar.
+            </p>
+
+            <!-- TECH SPECS -->
+            <h3 class="tech-title">🔧 Ficha Técnica</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🔲</div>
+                    <div>
+                        <div class="tech-label">Madera</div>
+                        <div class="tech-value">Roble Europeo Ahumado</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <div>
+                        <div class="tech-label">Color</div>
+                        <div class="tech-value">Negro carbón con veta natural</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚙️</div>
+                    <div>
+                        <div class="tech-label">Herrajes</div>
+                        <div class="tech-value">Blum Soft-Close Alemania</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔲</div>
+                    <div>
+                        <div class="tech-label">Mesón</div>
+                        <div class="tech-value">Neolith Nero 12mm</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📐</div>
+                    <div>
+                        <div class="tech-label">Área</div>
+                        <div class="tech-value">24 m²</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⏱️</div>
+                    <div>
+                        <div class="tech-label">Fabricación</div>
+                        <div class="tech-value">6 semanas</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💡</div>
+                    <div>
+                        <div class="tech-label">Iluminación</div>
+                        <div class="tech-value">LED integrada 3000K</div>
+                    </div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📍</div>
+                    <div>
+                        <div class="tech-label">Ubicación</div>
+                        <div class="tech-value">Medellín, 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="project-cta">
+            <h3>¿Te interesa algo similar?</h3>
+            <p>Cada proyecto es único. Cuéntanos tu idea.</p>
+            <a href="solicitar-proyecto.html">COTIZAR MI PROYECTO</a>
+        </div>
+    </div>
+
+    <footer class="main-footer" id="contacto">
+        <h2 class="footer-title">Tú lo piensas<br><span class="text-brand">nosotros lo creamos.</span></h2>
+        <div class="footer-nav">
+            <a href="index.html" class="footer-link">Inicio</a>
+            <a href="cocinas.html" class="footer-link">Cocinas</a>
+            <a href="armarios.html" class="footer-link">Armarios</a>
+            <a href="mobiliario.html" class="footer-link">Mobiliario</a>
+            <a href="nosotros.html" class="footer-link">Estudio</a>
+        </div>
+        <p class="footer-bottom">MEDELLÍN, COLOMBIA — © 2025 MADE UTIL</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/whatsapp.js"></script>
+    <script src="js/floating-buttons.js"></script>
+    <script>
+        // PROJECT CAROUSEL
+        let projIdx = 0;
+        const projItems = document.querySelectorAll('#projCarousel img, #projCarousel video');
+        const dotsContainer = document.getElementById('projDots');
+
+        // Create dots
+        projItems.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => projGoTo(i);
+            dotsContainer.appendChild(dot);
+        });
+
+        function projSlide(dir) {
+            projGoTo(projIdx + dir);
+        }
+
+        function projGoTo(n) {
+            projIdx = (n + projItems.length) % projItems.length;
+            projItems.forEach(el => el.classList.remove('active'));
+            projItems[projIdx].classList.add('active');
+
+            document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.className = 'carousel-dot' + (i === projIdx ? ' active' : '');
+            });
+
+            document.getElementById('projCounter').textContent = `${projIdx + 1} / ${projItems.length}`;
+        }
+
+        // Swipe support
+        let touchStartX = 0;
+        const carousel = document.getElementById('projCarousel');
+        carousel.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+        carousel.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) projSlide(diff > 0 ? 1 : -1);
+        });
+    </script>
+</body>
+
+</html>

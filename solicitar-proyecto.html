@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizar Proyecto | Made Util</title>
+    <meta name="description"
+        content="Cotiza tu proyecto de cocina, closet o mobiliario con nuestro asistente inteligente.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .quote-page {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .quote-hero {
+            text-align: center;
+            padding: 4rem 5vw 2rem;
+        }
+
+        .quote-hero h1 {
+            font-family: var(--font-h);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .quote-hero h1 span {
+            color: var(--brand-brown);
+        }
+
+        .quote-hero p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* WIZARD */
+        .wizard {
+            max-width: 800px;
+            margin: 2rem auto 4rem;
+            padding: 0 5vw;
+        }
+
+        /* Progress */
+        .wizard-progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .wizard-dot {
+            width: 40px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border);
+            transition: background 0.4s, box-shadow 0.4s;
+        }
+
+        .wizard-dot.active {
+            background: var(--brand-brown);
+            box-shadow: 0 0 12px var(--brand-brown-glow);
+        }
+
+        .wizard-dot.done {
+            background: var(--brand-green);
+        }
+
+        /* Steps */
+        .wizard-step {
+            display: none;
+            animation: fadeUp 0.5s ease-out;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-question {
+            font-family: var(--font-h);
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-hint {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Option Cards */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .option-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+
+        .option-card:hover {
+            border-color: var(--brand-brown);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(192, 118, 62, 0.15);
+        }
+
+        .option-card.selected {
+            border-color: var(--brand-brown);
+            background: rgba(192, 118, 62, 0.08);
+            box-shadow: 0 0 0 1px var(--brand-brown);
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .option-label {
+            font-family: var(--font-h);
+            font-size: 1.1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .option-desc {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Style cards (wider) */
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .style-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+
+        .style-card:hover {
+            border-color: var(--brand-brown);
+            transform: translateY(-3px);
+        }
+
+        .style-card.selected {
+            border-color: var(--brand-brown);
+            background: rgba(192, 118, 62, 0.08);
+        }
+
+        .style-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .style-name {
+            padding: 1rem;
+            font-family: var(--font-h);
+            font-size: 0.95rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        /* Input fields */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--brand-brown);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: var(--brand-brown);
+        }
+
+        .input-field::placeholder {
+            color: var(--dim);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        textarea.input-field {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Buttons */
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            gap: 1rem;
+        }
+
+        .wiz-btn {
+            font-family: var(--font-h);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .wiz-btn-back {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .wiz-btn-back:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .wiz-btn-next {
+            background: var(--brand-brown);
+            color: white;
+            margin-left: auto;
+        }
+
+        .wiz-btn-next:hover {
+            background: var(--brand-brown-light);
+            transform: translateY(-2px);
+        }
+
+        .wiz-btn-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* AI Summary */
+        .ai-summary {
+            background: linear-gradient(135deg, rgba(30, 52, 39, 0.3), rgba(192, 118, 62, 0.1));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .ai-summary h3 {
+            font-family: var(--font-h);
+            color: var(--brand-brown);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ai-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--accent);
+            font-size: 0.95rem;
+        }
+
+        .ai-summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .ai-summary-item .label {
+            color: var(--muted);
+        }
+
+        /* AI Chat in wizard */
+        .ai-help-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ai-help-title {
+            font-family: var(--font-h);
+            color: var(--brand-brown);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .ai-help-messages {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .ai-help-msg {
+            padding: 0.6rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .ai-help-msg.bot {
+            background: rgba(192, 118, 62, 0.1);
+            color: var(--accent);
+        }
+
+        .ai-help-msg.user {
+            background: var(--brand-brown);
+            color: white;
+            text-align: right;
+        }
+
+        .ai-help-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .ai-help-input input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.7rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .ai-help-input input:focus {
+            border-color: var(--brand-brown);
+        }
+
+        .ai-help-input button {
+            background: linear-gradient(135deg, var(--brand-brown) 0%, var(--brand-brown-light) 100%);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+            box-shadow: 0 4px 12px rgba(192,118,62,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-help-input button:hover {
+            background: linear-gradient(135deg, var(--brand-brown-light) 0%, var(--brand-brown) 100%);
+            box-shadow: 0 8px 20px rgba(192,118,62,0.35);
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        .ai-help-input button:active {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Success */
+        .success-view {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-view h2 {
+            font-family: var(--font-h);
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-view p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .style-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+
+            .wizard-nav {
+                flex-direction: column;
+            }
+
+            .wiz-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-loader"><span class="loader-brand">MADE UTIL</span></div>
+    <div class="grain"></div>
+
+    <nav>
+        <a href="index.html" class="nav-brand">MADE UTIL</a>
+        <div class="nav-menu">
+            <a href="index.html#proyectos">Colecciones</a>
+            <a href="nosotros.html">Estudio</a>
+            <a href="solicitar-proyecto.html" class="nav-cta">COTIZAR</a>
+        </div>
+        <button class="nav-toggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="quote-page">
+        <div class="quote-hero">
+            <h1>Cotiza tu <span>proyecto</span></h1>
+            <p>Completa los pasos y nuestro asistente te preparará una cotización personalizada.</p>
+        </div>
+
+        <!-- Progress dots -->
+        <div class="wizard-progress" id="wizProgress">
+            <div class="wizard-dot active"></div>
+            <div class="wizard-dot"></div>
+            <div class="wizard-dot"></div>
+            <div class="wizard-dot"></div>
+            <div class="wizard-dot"></div>
+        </div>
+
+        <div class="wizard" id="wizard">
+
+            <!-- STEP 1: Qué necesitas -->
+            <div class="wizard-step active" data-step="1">
+                <p class="step-question">¿Qué te gustaría crear?</p>
+                <p class="step-hint">Selecciona una o más categorías</p>
+                <div class="option-grid">
+                    <div class="option-card" data-value="cocina" onclick="toggleOption(this)">
+                        <span class="option-icon">01</span>
+                        <span class="option-label">Cocina</span>
+                        <span class="option-desc">Integral, modular, con isla</span>
+                    </div>
+                    <div class="option-card" data-value="closet" onclick="toggleOption(this)">
+                        <span class="option-icon">02</span>
+                        <span class="option-label">Closet</span>
+                        <span class="option-desc">Walk-in, lineal, vestidor</span>
+                    </div>
+                    <div class="option-card" data-value="mobiliario" onclick="toggleOption(this)">
+                        <span class="option-icon">03</span>
+                        <span class="option-label">Mobiliario</span>
+                        <span class="option-desc">Mesas, consolas, estanterías</span>
+                    </div>
+                    <div class="option-card" data-value="otro" onclick="toggleOption(this)">
+                        <span class="option-icon">04</span>
+                        <span class="option-label">Otro</span>
+                        <span class="option-desc">Cuéntanos tu idea</span>
+                    </div>
+                </div>
+                <div class="wizard-nav">
+                    <div></div>
+                    <button class="wiz-btn wiz-btn-next" onclick="nextStep()">Siguiente →</button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Estilo -->
+            <div class="wizard-step" data-step="2">
+                <p class="step-question">¿Qué estilo te gusta?</p>
+                <p class="step-hint">Elige el que más se acerque a tu visión</p>
+                <div class="style-grid">
+                    <div class="style-card" data-value="moderno" onclick="selectStyle(this)">
+                        <img class="style-img"
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80"
+                            alt="Moderno">
+                        <div class="style-name">Moderno</div>
+                    </div>
+                    <div class="style-card" data-value="minimalista" onclick="selectStyle(this)">
+                        <img class="style-img"
+                            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80"
+                            alt="Minimalista">
+                        <div class="style-name">Minimalista</div>
+                    </div>
+                    <div class="style-card" data-value="industrial" onclick="selectStyle(this)">
+                        <img class="style-img"
+                            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=400&q=80"
+                            alt="Industrial">
+                        <div class="style-name">Industrial</div>
+                    </div>
+                    <div class="style-card" data-value="clasico" onclick="selectStyle(this)">
+                        <img class="style-img"
+                            src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80"
+                            alt="Clásico">
+                        <div class="style-name">Clásico</div>
+                    </div>
+                    <div class="style-card" data-value="nordico" onclick="selectStyle(this)">
+                        <img class="style-img"
+                            src="https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=400&q=80"
+                            alt="Nórdico">
+                        <div class="style-name">Nórdico</div>
+                    </div>
+                    <div class="style-card" data-value="otro_estilo" onclick="selectStyle(this)">
+                        <div class="style-img"
+                            style="background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:2rem;">
+                            🎨</div>
+                        <div class="style-name">Otro / No sé</div>
+                    </div>
+                </div>
+                <div class="wizard-nav">
+                    <button class="wiz-btn wiz-btn-back" onclick="prevStep()">← Atrás</button>
+                    <button class="wiz-btn wiz-btn-next" onclick="nextStep()">Siguiente →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Detalles -->
+            <div class="wizard-step" data-step="3">
+                <p class="step-question">Cuéntanos los detalles</p>
+                <p class="step-hint">Mientras más info nos des, mejor será tu cotización</p>
+
+                <div class="input-group">
+                    <label class="input-label">Describe tu proyecto</label>
+                    <textarea class="input-field" id="qDesc"
+                        placeholder="Ej: Quiero una cocina en L con isla, color blanco y mesón en cuarzo. El espacio mide aprox 4x3 metros..."></textarea>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">Medidas aproximadas</label>
+                        <input class="input-field" id="qMedidas" placeholder="Ej: 4m x 3m">
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Ciudad / Zona</label>
+                        <input class="input-field" id="qCiudad" placeholder="Ej: Sabaneta, Antioquia">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">¿Tienes referencia visual? (link de Pinterest, Instagram, etc.)</label>
+                    <input class="input-field" id="qRef" placeholder="https://pinterest.com/pin/...">
+                </div>
+
+                <!-- AI Help -->
+                <div class="ai-help-box">
+                    <div class="ai-help-title">🤖 ¿No sabes qué poner? Pregúntale a nuestra IA</div>
+                    <div class="ai-help-messages" id="aiHelpMsgs">
+                        <div class="ai-help-msg bot">¡Hola! Puedo ayudarte a describir tu proyecto. ¿Qué tipo de espacio
+                            tienes? ¿Qué necesitas? Pregúntame lo que quieras.</div>
+                    </div>
+                    <div class="ai-help-input">
+                        <input type="text" id="aiHelpInput" placeholder="Ej: ¿Qué tipo de mesón me recomiendas?">
+                        <button onclick="sendAiHelp()">→</button>
+                    </div>
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="wiz-btn wiz-btn-back" onclick="prevStep()">← Atrás</button>
+                    <button class="wiz-btn wiz-btn-next" onclick="nextStep()">Siguiente →</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Datos de contacto -->
+            <div class="wizard-step" data-step="4">
+                <p class="step-question">¿Cómo te contactamos?</p>
+                <p class="step-hint">Para enviarte la cotización personalizada</p>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label class="input-label">Tu nombre</label>
+                        <input class="input-field" id="qNombre" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">Teléfono / WhatsApp</label>
+                        <input class="input-field" id="qTel" placeholder="300 000 0000" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Email (opcional)</label>
+                    <input class="input-field" id="qEmail" type="email" placeholder="tu@email.com">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">¿Cuándo te gustaría iniciar?</label>
+                    <div class="option-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="option-card" data-value="urgente" onclick="selectUrgency(this)"
+                            style="padding:1.2rem">
+                            <span class="option-icon" style="font-size:1.5rem">→</span>
+                            <span class="option-label" style="font-size:0.85rem">Lo antes posible</span>
+                        </div>
+                        <div class="option-card" data-value="1mes" onclick="selectUrgency(this)" style="padding:1.2rem">
+                            <span class="option-icon" style="font-size:1.5rem">▢</span>
+                            <span class="option-label" style="font-size:0.85rem">Este mes</span>
+                        </div>
+                        <div class="option-card" data-value="explorando" onclick="selectUrgency(this)"
+                            style="padding:1.2rem">
+                            <span class="option-icon" style="font-size:1.5rem">◇</span>
+                            <span class="option-label" style="font-size:0.85rem">Estoy explorando</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="wiz-btn wiz-btn-back" onclick="prevStep()">← Atrás</button>
+                    <button class="wiz-btn wiz-btn-next" onclick="nextStep()">Ver resumen →</button>
+                </div>
+            </div>
+
+            <!-- STEP 5: Resumen + Enviar -->
+            <div class="wizard-step" data-step="5">
+                <p class="step-question">Resumen de tu proyecto</p>
+                <p class="step-hint">Revisa que todo esté correcto antes de enviar</p>
+
+                <div class="ai-summary" id="aiSummary">
+                    <!-- Filled by JS -->
+                </div>
+
+                <div class="wizard-nav">
+                    <button class="wiz-btn wiz-btn-back" onclick="prevStep()">← Editar</button>
+                    <button class="wiz-btn wiz-btn-next" onclick="submitQuote()"
+                        style="background: var(--brand-green); padding: 1rem 3rem;">
+                        ✓ ENVIAR SOLICITUD
+                    </button>
+                </div>
+            </div>
+
+            <!-- SUCCESS -->
+            <div class="wizard-step" data-step="6">
+                <div class="success-view">
+                    <div class="success-icon">🎉</div>
+                    <h2>¡Solicitud enviada!</h2>
+                    <p>Nuestro equipo revisará tu proyecto y te contactaremos en menos de 24 horas con una cotización
+                        personalizada.</p>
+                    <a href="index.html" class="wiz-btn wiz-btn-next"
+                        style="display:inline-block;text-decoration:none;">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/floating-buttons.js"></script>
+    <script src="js/whatsapp.js"></script>
+    <script>
+        // ============ WIZARD LOGIC ============
+        let currentStep = 1;
+        const totalSteps = 5;
+        const quoteData = {
+            categorias: [],
+            estilo: '',
+            descripcion: '',
+            medidas: '',
+            ciudad: '',
+            referencia: '',
+            nombre: '',
+            telefono: '',
+            email: '',
+            urgencia: ''
+        };
+
+        function toggleOption(el) {
+            el.classList.toggle('selected');
+            const val = el.dataset.value;
+            if (el.classList.contains('selected')) {
+                quoteData.categorias.push(val);
+            } else {
+                quoteData.categorias = quoteData.categorias.filter(v => v !== val);
+            }
+        }
+
+        function selectStyle(el) {
+            document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            quoteData.estilo = el.dataset.value;
+        }
+
+        function selectUrgency(el) {
+            el.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            quoteData.urgencia = el.dataset.value;
+        }
+
+        function nextStep() {
+            // Validation
+            if (currentStep === 1 && quoteData.categorias.length === 0) {
+                alert('Selecciona al menos una categoría'); return;
+            }
+            if (currentStep === 4) {
+                const nombre = document.getElementById('qNombre').value;
+                const tel = document.getElementById('qTel').value;
+                if (!nombre || !tel) {
+                    alert('Nombre y teléfono son obligatorios'); return;
+                }
+            }
+
+            // Save data from step 3
+            if (currentStep === 3) {
+                quoteData.descripcion = document.getElementById('qDesc').value;
+                quoteData.medidas = document.getElementById('qMedidas').value;
+                quoteData.ciudad = document.getElementById('qCiudad').value;
+                quoteData.referencia = document.getElementById('qRef').value;
+            }
+
+            // Save data from step 4
+            if (currentStep === 4) {
+                quoteData.nombre = document.getElementById('qNombre').value;
+                quoteData.telefono = document.getElementById('qTel').value;
+                quoteData.email = document.getElementById('qEmail').value;
+            }
+
+            // Build summary for step 5
+            if (currentStep === 4) {
+                buildSummary();
+            }
+
+            if (currentStep < 6) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`[data-step="${n}"]`).classList.add('active');
+
+            // Update progress
+            document.querySelectorAll('.wizard-dot').forEach((d, i) => {
+                d.className = 'wizard-dot';
+                if (i + 1 === n) d.classList.add('active');
+                if (i + 1 < n) d.classList.add('done');
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function buildSummary() {
+            const catNames = { cocina: 'Cocina', closet: 'Closet', mobiliario: 'Mobiliario', otro: 'Otro' };
+            const styleNames = { moderno: 'Moderno', minimalista: 'Minimalista', industrial: 'Industrial', clasico: 'Clásico', nordico: 'Nórdico', otro_estilo: 'Otro / No definido' };
+            const urgNames = { urgente: '⚡ Lo antes posible', '1mes': '📅 Este mes', explorando: '🔍 Estoy explorando' };
+
+            const cats = quoteData.categorias.map(c => catNames[c] || c).join(', ');
+
+            document.getElementById('aiSummary').innerHTML = `
+                <h3>🤖 Tu proyecto en resumen</h3>
+                <div class="ai-summary-item"><span class="label">Categoría</span><span>${cats}</span></div>
+                <div class="ai-summary-item"><span class="label">Estilo</span><span>${styleNames[quoteData.estilo] || 'No seleccionado'}</span></div>
+                <div class="ai-summary-item"><span class="label">Descripción</span><span>${quoteData.descripcion || '—'}</span></div>
+                <div class="ai-summary-item"><span class="label">Medidas</span><span>${quoteData.medidas || '—'}</span></div>
+                <div class="ai-summary-item"><span class="label">Ciudad</span><span>${quoteData.ciudad || '—'}</span></div>
+                <div class="ai-summary-item"><span class="label">Referencia</span><span>${quoteData.referencia ? '<a href="' + quoteData.referencia + '" target="_blank">Ver</a>' : '—'}</span></div>
+                <div class="ai-summary-item"><span class="label">Nombre</span><span>${quoteData.nombre}</span></div>
+                <div class="ai-summary-item"><span class="label">Teléfono</span><span>${quoteData.telefono}</span></div>
+                <div class="ai-summary-item"><span class="label">Email</span><span>${quoteData.email || '—'}</span></div>
+                <div class="ai-summary-item"><span class="label">Inicio</span><span>${urgNames[quoteData.urgencia] || '—'}</span></div>
+            `;
+        }
+
+        function submitQuote() {
+            // Save to localStorage so admin can see it
+            const leads = JSON.parse(localStorage.getItem('mu_leads') || '[]');
+            leads.push({ ...quoteData, fecha: new Date().toISOString() });
+            localStorage.setItem('mu_leads', JSON.stringify(leads));
+
+            // Try API
+            fetch('/api/leads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(quoteData)
+            }).catch(() => {
+                // Fallback: WhatsApp
+                const msg = `¡Hola! Quiero cotizar un proyecto:\n\n` +
+                    `📦 ${quoteData.categorias.join(', ')}\n` +
+                    `🎨 Estilo: ${quoteData.estilo}\n` +
+                    `📝 ${quoteData.descripcion}\n` +
+                    `📏 Medidas: ${quoteData.medidas}\n` +
+                    `📍 ${quoteData.ciudad}\n` +
+                    `👤 ${quoteData.nombre} - ${quoteData.telefono}`;
+                window.open('https://wa.me/573005444049?text=' + encodeURIComponent(msg), '_blank');
+            });
+
+            // Show success
+            currentStep = 6;
+            showStep(6);
+        }
+
+        // ============ AI HELP CHAT ============
+        function sendAiHelp() {
+            const input = document.getElementById('aiHelpInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const container = document.getElementById('aiHelpMsgs');
+            container.innerHTML += `<div class="ai-help-msg user">${msg}</div>`;
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getAiHelpResponse(msg);
+                container.innerHTML += `<div class="ai-help-msg bot">${response}</div>`;
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
+
+        document.getElementById('aiHelpInput')?.addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendAiHelp();
+        });
+
+        function getAiHelpResponse(text) {
+            const t = text.toLowerCase();
+            if (t.includes('mesón') || t.includes('meson') || t.includes('cuarzo'))
+                return 'Para mesones te recomiendo <b>cuarzo</b> (resistente a manchas y calor) o <b>Neolith</b> (ultra premium). El granito también es buena opción económica. ¿Qué uso le darás a tu cocina?';
+            if (t.includes('color') || t.includes('blanco') || t.includes('oscuro'))
+                return 'Los colores más populares ahora son: <b>blanco mate</b> (atemporal), <b>gris antracita</b> (elegante), y <b>madera natural</b> (cálido). ¿Prefieres tonos claros u oscuros?';
+            if (t.includes('material') || t.includes('melamina') || t.includes('madera'))
+                return 'Trabajamos con <b>melaminas Arauco</b> (alta resistencia), <b>MDF lacado</b> (acabado premium), y <b>madera maciza</b> para detalles. Los herrajes son <b>Blum</b> (Alemania) con cierre suave.';
+            if (t.includes('medida') || t.includes('espacio') || t.includes('metro'))
+                return 'Para medir tu espacio: usa un metro y mide <b>largo × ancho × alto</b> del espacio disponible. Si no puedes, no te preocupes — hacemos visita técnica gratuita con medición láser.';
+            if (t.includes('tiempo') || t.includes('demora') || t.includes('plazo'))
+                return 'El proceso completo toma entre <b>4 a 6 semanas</b> desde la aprobación del diseño. Incluye: diseño 3D (1 sem), fabricación (2-4 sem), e instalación (1-3 días).';
+            if (t.includes('herraje') || t.includes('blum'))
+                return 'Usamos herrajes <b>Blum</b> de Alemania: bisagras Clip Top con Blumotion (cierre suave), correderas Tandem, y sistemas Aventos para puertas elevables. Son los mejores del mercado.';
+            return 'Entiendo. Te recomiendo describir tu espacio con las medidas aproximadas, el estilo que te gusta, y cualquier referencia visual (fotos de Pinterest o Instagram ayudan mucho). ¿Hay algo más específico que quieras saber?';
+        }
+    </script>
+    <script src="js/api.js"></script>
+    <script src="js/solicitud-nueva.js"></script>
+    <script src="js/ai-assistant-v5.js"></script>
+</body>
+
+</html>
