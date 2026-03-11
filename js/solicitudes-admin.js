@@ -4,7 +4,7 @@
  * Integra IA de sugerencias y resúmenes automáticos
  */
 
-const SOLICITUDES_API = (typeof API_BASE !== 'undefined' && API_BASE ? API_BASE : 'http://localhost:3001') + '/api/leads';
+const SOLICITUDES_API = (typeof API_BASE !== 'undefined' && API_BASE ? API_BASE : (window.location.hostname === 'localhost' ? 'http://localhost:3001' : '')) + '/api/leads';
 
 // ==================== RENDERIZAR SOLICITUDES ====================
 async function loadSolicitudes() {

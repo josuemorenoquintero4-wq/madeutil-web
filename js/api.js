@@ -5,16 +5,19 @@
 
 // Definición unificada de API_BASE
 const API_BASE = (() => {
-    const port = window.location.port;
     const hostname = window.location.hostname;
     
-    // Si está en localhost:3001, usar ruta relativa
-    if (port === '3001') {
-        return '';  // Ruta relativa /api
+    // Si estamos en localhost usar puerto 3001 si aplica, sino usar ruta relativa para todo (Render/Vercel)
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        const port = window.location.port;
+        if (port === '3001') {
+            return '';
+        }
+        return 'http://localhost:3001';
     }
     
-    // Si está en puerto diferente, redirigir a 3001
-    return 'http://localhost:3001';
+    // En producción (Render), utilizar la misma URL
+    return '';
 })();
 
 const API = {
