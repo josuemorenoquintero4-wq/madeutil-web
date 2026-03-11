@@ -91,7 +91,7 @@ async function notifyNewLead(leadData) {
 🎨 ${leadData.categorias || 'No especificado'}
 💰 ${leadData.presupuesto || 'No especificado'}
 
-Ver en admin: ${process.env.BASE_URL || 'http://localhost:3001'}/admin.html`;
+Ver en admin: ${process.env.BASE_URL || 'https://madeutil-web.onrender.com'}/admin.html`;
 
     try {
         if (TWILIO_CONFIG.enabled && twilioClient) {

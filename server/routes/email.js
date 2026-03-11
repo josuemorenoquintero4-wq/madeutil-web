@@ -105,7 +105,7 @@ async function notifyNewLeadEmail(leadData) {
                 ` : ''}
                 
                 <div style="margin-top: 30px; text-align: center;">
-                    <a href="${process.env.BASE_URL || 'http://localhost:3001'}/admin.html" 
+                    <a href="${process.env.BASE_URL || 'https://madeutil-web.onrender.com'}/admin.html" 
                        style="display: inline-block; background: #734627; color: white; padding: 15px 40px; 
                               text-decoration: none; border-radius: 5px; font-weight: bold;">
                         Ver en Panel Admin
@@ -146,7 +146,7 @@ ${leadData.horarios}
 ` : ''}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━
-Ver en admin: ${process.env.BASE_URL || 'http://localhost:3001'}/admin.html
+Ver en admin: ${process.env.BASE_URL || 'https://madeutil-web.onrender.com'}/admin.html
 
 Fecha: ${new Date().toLocaleString('es-CO')}
     `;

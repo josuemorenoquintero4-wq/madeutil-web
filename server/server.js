@@ -51,7 +51,7 @@ async function sendQuoteNotification(lead) {
                     </div>
                     <div style="margin-top: 20px; padding: 15px; background: #c0763e; color: white; border-radius: 5px; text-align: center;">
                         <p style="margin: 0;"><strong>¡Revisa el admin panel para gestionar esta cotización!</strong></p>
-                        <a href="http://localhost:3001/admin-panel.html" style="color: #f5f2ed; text-decoration: underline;">Ir al Admin Panel</a>
+                        <a href="${process.env.BASE_URL || 'https://madeutil-web.onrender.com'}/admin-panel.html" style="color: #f5f2ed; text-decoration: underline;">Ir al Admin Panel</a>
                     </div>
                 </div>
             `
